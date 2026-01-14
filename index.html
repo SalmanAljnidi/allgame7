@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ألعاب سلمان التعليمية</title>
+    <meta name="theme-color" content="#1e3c72">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #1e3c72, #2a5298);
+            --surface: #ffffff;
+            --background: #f4f7f6;
+            --text-main: #2c3e50;
+            --accent: #3498db;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* رأس الصفحة */
+        header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4rem 1rem 6rem;
+            text-align: center;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(30, 60, 114, 0.2);
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; font-weight: 800; }
+        header p { margin-top: 10px; font-size: 1.1rem; opacity: 0.9; }
+
+        /* زر التثبيت */
+        #installBtn {
+            display: none; /* مخفي افتراضياً */
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            z-index: 1000;
+            font-family: 'Tajawal';
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        #installBtn:hover { background: white; color: #1e3c72; }
+
+        /* المحتوى */
+        .container {
+            max-width: 1200px;
+            margin: -4rem auto 2rem; /* سحب المحتوى للأعلى */
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+
+        /* البطاقات */
+        .card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #f0f4f8;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .card h3 { margin: 0 0 0.5rem; font-size: 1.4rem; }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .badge-primary { background: #e3f2fd; color: #1565c0; } /* أزرق للأولية */
+        .badge-upper { background: #f3e5f5; color: #7b1fa2; } /* بنفسجي للعليا */
+        .badge-all { background: #e8f5e9; color: #2e7d32; } /* أخضر للكل */
+
+        .btn {
+            background: var(--text-main);
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover { background: var(--accent); }
+
+        /* الفوتر */
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-main);
+        }
+        .social a {
+            font-size: 2rem;
+            margin: 0 10px;
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+        .social a:hover { color: var(--accent); }
+        .fa-snapchat { color: #FFFC00; text-shadow: 0 0 2px #000; }
+        .fa-whatsapp { color: #25D366; }
+
+    </style>
+</head>
+<body>
+
+    <button id="installBtn"><i class="fa-solid fa-download"></i> تثبيت التطبيق</button>
+
+    <header>
+        <h1>ألعاب سلمان التعليمية</h1>
+        <p>باقة من الألعاب التفاعلية الممتعة - لا تحتاج تحميل</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-person-hiking"></i></div>
+            <h3>طريق العصا</h3>
+            <div><span class="badge badge-primary">صفوف أولية</span></div>
+            <a href="https://salmanaljnidi.github.io/tgame00/" class="btn" target="_blank">العب الآن</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-crow"></i></div>
+            <h3>قفزة الطائر</h3>
+            <div><span class="badge badge-all">جميع المراحل</span></div>
+            <a href="https://salmanaljnidi.github.io/flaymath/" class="btn" target="_blank">العب الآن</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-map"></i></div>
+            <h3>طريق المغامرة 1</h3>
+            <div><span class="badge badge-primary">صفوف أولية</span></div>
+            <a href="https://salmanaljnidi.github.io/heromath1/" class="btn" target="_blank">العب الآن</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-compass"></i></div>
+            <h3>طريق المغامرة 2</h3>
+            <div><span class="badge badge-upper">صفوف عليا</span></div>
+            <a href="https://salmanaljnidi.github.io/heromath/" class="btn" target="_blank">العب الآن</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+            <h3>المليون (عام)</h3>
+            <div><span class="badge badge-primary">أول وثاني</span></div>
+            <a href="https://salmanaljnidi.github.io/millionf/" class="btn" target="_blank">العب الآن</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-xmark"></i></div>
+            <h3>المليون (ضرب)</h3>
+            <div><span class="badge badge-upper">صفوف عليا</span></div>
+            <a href="https://salmanaljnidi.github.io/t2/" class="btn" target="_blank">العب الآن</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-divide"></i></div>
+            <h3>المليون (قسمة)</h3>
+            <div><span class="badge badge-upper">صفوف عليا</span></div>
+            <a href="https://salmanaljnidi.github.io/milliond/" class="btn" target="_blank">العب الآن</a>
+        </div>
+    </div>
+
+    <footer>
+        <p style="font-weight: bold; margin-bottom: 10px;">تصميم وبرمجة سلمان الجنيدي</p>
+        <div class="social">
+            <a href="https://wa.me/966566996166" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://snapchat.com/t/frmJidIm" target="_blank"><i class="fa-brands fa-snapchat"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // تسجيل Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+
+        // منطق زر التثبيت
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'block'; // إظهار الزر
+        });
+
+        installBtn.addEventListener('click', (e) => {
+            installBtn.style.display = 'none';
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                }
+                deferredPrompt = null;
+            });
+        });
+    </script>
+</body>
+</html>
