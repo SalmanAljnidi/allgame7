@@ -13,6 +13,7 @@
     
     <style>
         :root {
+            /* تعريف الألوان الأساسية */
             --primary-gradient: linear-gradient(135deg, #1e3c72, #2a5298);
             --surface: #ffffff;
             --background: #f4f7f6;
@@ -30,7 +31,7 @@
             flex-direction: column;
         }
 
-        /* رأس الصفحة */
+        /* === تصميم الهيدر (رأس الصفحة) === */
         header {
             background: var(--primary-gradient);
             color: white;
@@ -45,7 +46,7 @@
         header h1 { margin: 0; font-size: 2.5rem; font-weight: 800; }
         header p { margin-top: 10px; font-size: 1.1rem; opacity: 0.9; }
 
-        /* زر التثبيت */
+        /* === زر التثبيت العائم === */
         #installBtn {
             display: none; /* مخفي افتراضياً */
             position: fixed;
@@ -65,18 +66,18 @@
         }
         #installBtn:hover { background: white; color: #1e3c72; }
 
-        /* المحتوى */
+        /* === حاوية البطاقات === */
         .container {
             max-width: 1200px;
-            margin: -4rem auto 2rem; /* سحب المحتوى للأعلى */
+            margin: -4rem auto 2rem; /* سحب المحتوى للأعلى ليتداخل مع الهيدر */
             padding: 0 1.5rem;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* شبكة متجاوبة */
             gap: 2rem;
             position: relative;
         }
 
-        /* البطاقات */
+        /* === تصميم البطاقة === */
         .card {
             background: var(--surface);
             border-radius: 20px;
@@ -91,7 +92,7 @@
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px); /* تأثير الرفع عند التحويم */
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
@@ -110,6 +111,7 @@
 
         .card h3 { margin: 0 0 0.5rem; font-size: 1.4rem; }
         
+        /* شارات الفئات (أولية/عليا) */
         .badge {
             display: inline-block;
             padding: 4px 12px;
@@ -118,10 +120,11 @@
             font-weight: 600;
             margin-bottom: 1.5rem;
         }
-        .badge-primary { background: #e3f2fd; color: #1565c0; } /* أزرق للأولية */
-        .badge-upper { background: #f3e5f5; color: #7b1fa2; } /* بنفسجي للعليا */
-        .badge-all { background: #e8f5e9; color: #2e7d32; } /* أخضر للكل */
+        .badge-primary { background: #e3f2fd; color: #1565c0; } 
+        .badge-upper { background: #f3e5f5; color: #7b1fa2; } 
+        .badge-all { background: #e8f5e9; color: #2e7d32; } 
 
+        /* زر اللعب */
         .btn {
             background: var(--text-main);
             color: white;
@@ -133,21 +136,50 @@
         }
         .btn:hover { background: var(--accent); }
 
-        /* الفوتر */
+        /* === تصميم الفوتر (المحدث) === */
         footer {
             margin-top: auto;
             text-align: center;
-            padding: 2rem;
+            padding: 2rem 1rem;
             color: var(--text-main);
+            background: #e9ecef; /* لون خلفية فاتح للفوتر */
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
         }
+
+        /* حاوية الحقوق والشعار */
+        .copyright-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            gap: 12px; /* مسافة بين الصورة والنص */
+        }
+
+        .copyright-logo {
+            width: 50px; /* حجم الشعار */
+            height: 50px;
+            border-radius: 50%; /* ضمان دائرية الصورة */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 2px solid white;
+        }
+
+        .copyright-text {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        /* أيقونات التواصل */
         .social a {
             font-size: 2rem;
-            margin: 0 10px;
+            margin: 0 12px;
             color: var(--text-main);
             transition: 0.3s;
+            display: inline-block;
         }
-        .social a:hover { color: var(--accent); }
-        .fa-snapchat { color: #FFFC00; text-shadow: 0 0 2px #000; }
+        .social a:hover { transform: scale(1.2); }
+        .fa-snapchat { color: #FFFC00; text-shadow: 0 0 2px rgba(0,0,0,0.5); }
         .fa-whatsapp { color: #25D366; }
 
     </style>
@@ -158,7 +190,7 @@
 
     <header>
         <h1>ألعاب سلمان التعليمية</h1>
-        <p>باقة من الألعاب التفاعلية الممتعة - لا تحتاج تحميل</p>
+        <p>باقة من الألعاب التفاعلية الممتعة - العب مباشرة بدون تحميل</p>
     </header>
 
     <div class="container">
@@ -177,15 +209,15 @@
         </div>
 
         <div class="card">
-            <div class="card-icon"><i class="fa-solid fa-map"></i></div>
-            <h3>طريق المغامرة 1</h3>
+            <div class="card-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+            <h3>طريق المغامرة (أولية)</h3>
             <div><span class="badge badge-primary">صفوف أولية</span></div>
             <a href="https://salmanaljnidi.github.io/heromath1/" class="btn" target="_blank">العب الآن</a>
         </div>
 
         <div class="card">
             <div class="card-icon"><i class="fa-solid fa-compass"></i></div>
-            <h3>طريق المغامرة 2</h3>
+            <h3>طريق المغامرة (عليا)</h3>
             <div><span class="badge badge-upper">صفوف عليا</span></div>
             <a href="https://salmanaljnidi.github.io/heromath/" class="btn" target="_blank">العب الآن</a>
         </div>
@@ -213,7 +245,11 @@
     </div>
 
     <footer>
-        <p style="font-weight: bold; margin-bottom: 10px;">تصميم وبرمجة سلمان الجنيدي</p>
+        <div class="copyright-container">
+            <img src="logo.png" alt="شعار سلمان الجنيدي" class="copyright-logo">
+            <p class="copyright-text">جميع الحقوق محفوظة لـ سلمان الجنيدي</p>
+        </div>
+        
         <div class="social">
             <a href="https://wa.me/966566996166" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
             <a href="https://snapchat.com/t/frmJidIm" target="_blank"><i class="fa-brands fa-snapchat"></i></a>
@@ -221,28 +257,25 @@
     </footer>
 
     <script>
-        // تسجيل Service Worker
+        // تسجيل Service Worker لخاصية التثبيت
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js');
         }
 
-        // منطق زر التثبيت
+        // منطق إظهار زر التثبيت
         let deferredPrompt;
         const installBtn = document.getElementById('installBtn');
 
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            installBtn.style.display = 'block'; // إظهار الزر
+            installBtn.style.display = 'block';
         });
 
         installBtn.addEventListener('click', (e) => {
             installBtn.style.display = 'none';
             deferredPrompt.prompt();
             deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                }
                 deferredPrompt = null;
             });
         });
