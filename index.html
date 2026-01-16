@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ألعاب التميز التعليمية</title>
-    <meta name="theme-color" content="#00897B"> <meta name="description" content="منصة ألعاب التميز التعليمية - العب وتعلم بلا حدود">
+    <meta name="theme-color" content="#240b36"> <meta name="description" content="منصة ألعاب التميز التعليمية - العب وتعلم بلا حدود">
     
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192.png">
@@ -14,13 +14,13 @@
 
     <style>
         :root {
-            /* ألوان مستوحاة من مدرستي */
-            --primary: #00897B; /* التركواز الرسمي */
-            --secondary: #26A69A;
-            --accent: #FF6F00; /* برتقالي للتشويق */
-            --bg-body: #F4F7F6;
-            --card-bg: #ffffff;
-            --text-main: #263238;
+            /* لوحة ألوان نيون حيوية */
+            --primary-glow: #00f2fe; /* سماوي ساطع */
+            --secondary-glow: #4facfe; /* أزرق ساطع */
+            --accent-glow: #f093fb; /* وردي ساطع */
+            --accent-secondary: #f5576c; /* أحمر ساطع */
+            --card-dark: rgba(20, 20, 40, 0.7); /* لون البطاقة الشفاف */
+            --text-light: #ffffff;
         }
 
         * {
@@ -30,8 +30,11 @@
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
+            /* خلفية المجرة المتحركة */
+            background: linear-gradient(45deg, #240b36, #c31432, #1a2a6c, #f093fb);
+            background-size: 400% 400%;
+            animation: cosmicFlow 15s ease infinite;
+            color: var(--text-light);
             margin: 0;
             min-height: 100vh;
             display: flex;
@@ -39,81 +42,65 @@
             overflow-x: hidden;
         }
 
-        /* === الهيدر بتصميم منحني === */
-        header {
-            background: linear-gradient(135deg, #00897B 0%, #004D40 100%);
-            color: white;
-            padding: 4rem 1.5rem 6rem;
-            text-align: center;
-            border-bottom-left-radius: 50% 20px;
-            border-bottom-right-radius: 50% 20px;
-            box-shadow: 0 10px 30px rgba(0, 137, 123, 0.2);
-            position: relative;
-            overflow: hidden;
+        /* حركة الخلفية الانسيابية */
+        @keyframes cosmicFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* دوائر زخرفية خفيفة في الخلفية */
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50px; left: -50px;
-            width: 150px; height: 150px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 20px; right: -30px;
-            width: 100px; height: 100px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-
-        header h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin: 0;
-            font-weight: 900;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        header p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            opacity: 0.9;
-            font-weight: 500;
-        }
-
-        /* زر التثبيت العائم */
+        /* === زر التثبيت المتوهج === */
         #installBtn {
             display: none;
             position: fixed;
-            top: 20px;
-            left: 20px;
-            background: white;
-            color: var(--primary);
-            border: 2px solid white;
-            padding: 8px 20px;
+            top: 20px; left: 20px;
+            background: linear-gradient(to right, var(--accent-glow), var(--accent-secondary));
+            color: white;
+            border: none;
+            padding: 10px 22px;
             border-radius: 50px;
             font-family: 'Tajawal';
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-weight: 800;
+            box-shadow: 0 0 20px var(--accent-glow);
             z-index: 1000;
             cursor: pointer;
-            animation: pulse 2s infinite;
+            animation: pump 2s infinite;
+        }
+        @keyframes pump {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px var(--accent-secondary); }
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        /* === الهيدر القوي === */
+        header {
+            text-align: center;
+            padding: 5rem 1.5rem 3rem;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            margin: 0;
+            font-weight: 900;
+            /* تأثير النص المتوهج */
+            background: linear-gradient(to right, var(--primary-glow), var(--accent-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.5));
+        }
+
+        header p {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            font-weight: 500;
+            color: #e0e0e0;
         }
 
         /* === الحاوية === */
         .container {
             width: 100%;
             max-width: 1200px;
-            margin: -4rem auto 3rem;
+            margin: 0 auto 4rem;
             padding: 0 1.5rem;
             position: relative;
             z-index: 2;
@@ -122,386 +109,279 @@
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
-        /* === البطاقة التفاعلية === */
+        /* === البطاقة الحية (The Alive Card) === */
         .game-card {
-            background: white;
-            border-radius: 20px;
-            padding: 1.5rem;
+            /* خلفية زجاجية داكنة */
+            background: var(--card-dark);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 2rem 1.5rem;
             text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
-            border: 1px solid rgba(0,0,0,0.02);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* حركة نطاطة */
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: slideUp 0.6s ease-out forwards;
+            animation: popIn 0.6s ease-out forwards;
             opacity: 0;
         }
 
-        /* شريط ملون علوي لكل بطاقة */
-        .game-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-        }
-
+        /* تأثير التحويم المذهل */
         .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 137, 123, 0.15);
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--primary-glow);
+            /* توهج خارجي قوي */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px var(--primary-glow), inset 0 0 20px rgba(0, 242, 254, 0.2);
         }
-
-        .icon-wrapper {
-            width: 80px;
-            height: 80px;
-            background: #E0F2F1; /* لون فاتح جداً من ثيم مدرستي */
+        
+        /* الأيقونة الضخمة المتوهجة */
+        .icon-box {
+            width: 100px; height: 100px;
+            /* خلفية متدرجة للأيقونة */
+            background: linear-gradient(135deg, var(--secondary-glow), var(--primary-glow));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            transition: 0.3s;
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 25px var(--secondary-glow);
+            transition: 0.4s;
         }
 
-        .game-card:hover .icon-wrapper {
-            background: var(--primary);
-            color: white;
-            transform: rotate(10deg);
+        .game-card:hover .icon-box {
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: 0 0 50px var(--primary-glow);
+            animation: shake 0.5s infinite alternate;
         }
+        @keyframes shake { from { transform: rotate(10deg) scale(1.1); } to { transform: rotate(5deg) scale(1.1); } }
 
         .card-title {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #37474F;
-            margin-bottom: 0.5rem;
+            font-size: 1.4rem; font-weight: 900; margin-bottom: 0.8rem;
+            color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
 
         .badge {
-            display: inline-block;
-            font-size: 0.8rem;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            background: #ECEFF1;
-            color: #546E7A;
+            display: inline-block; font-size: 0.9rem; padding: 5px 15px;
+            border-radius: 20px; font-weight: 700; margin-bottom: 1.5rem;
+            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
         }
+        .badge.primary { color: #80deea; }
+        .badge.upper { color: #f48fb1; }
+        .badge.all { color: #a5d6a7; }
 
+        /* زر اللعب */
         .play-btn {
-            width: 100%;
-            padding: 12px;
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 800;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            width: 100%; padding: 14px;
+            background: linear-gradient(to right, var(--accent-secondary), var(--accent-glow));
+            color: white; text-decoration: none;
+            border-radius: 50px; font-weight: 900; font-size: 1.1rem;
+            transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative; overflow: hidden;
         }
-
-        .play-btn:hover {
-            background: var(--primary);
-            color: white;
+        .play-btn::before { /* لمعة تمر على الزر */
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
         }
+        .play-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--accent-secondary); }
+        .play-btn:hover::before { left: 100%; }
 
-        /* === قسم التثبيت المميز === */
+
+        /* === قسم التثبيت المتميز === */
         .install-section {
-            background: white;
-            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.05); /* زجاجي شفاف جداً */
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--accent-glow);
+            border-radius: 30px;
             padding: 3rem 2rem;
-            margin-top: 4rem;
+            margin-top: 5rem;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
             position: relative;
+            box-shadow: 0 0 50px rgba(240, 147, 251, 0.2);
+        }
+
+        .install-title {
+            font-size: 1.8rem; font-weight: 900; color: var(--accent-glow);
+            margin-bottom: 1rem; text-shadow: 0 0 10px rgba(240, 147, 251, 0.5);
         }
         
-        .section-badge {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: white;
-            padding: 10px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(255, 111, 0, 0.3);
-        }
-
         .install-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .install-item {
-            text-decoration: none;
-            display: block;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 2.5rem;
         }
 
         .install-card {
-            background: #FAFAFA;
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 2px dashed #CFD8DC;
-            transition: 0.3s;
+            background: rgba(0,0,0,0.3); border: 2px solid var(--primary-glow);
+            padding: 1.5rem 2.5rem; border-radius: 20px; text-decoration: none;
+            color: white; transition: 0.3s; display: flex; flex-direction: column; align-items: center;
         }
-
-        .install-card:hover {
-            border-color: #FF0000;
-            background: #fff;
-            transform: translateY(-5px);
-        }
-
-        .yt-icon {
-            font-size: 2.5rem;
-            color: #FF0000;
-            margin-bottom: 10px;
-        }
-        
-        .install-text {
-            display: block;
-            font-weight: bold;
-            color: #455A64;
-        }
+        .install-card i { font-size: 2.5rem; margin-bottom: 10px; color: var(--primary-glow); transition: 0.3s; }
+        .install-card:hover { background: var(--primary-glow); color: #000; transform: translateY(-5px); box-shadow: 0 0 30px var(--primary-glow); }
+        .install-card:hover i { color: #000; }
 
         /* === الفوتر === */
         footer {
             margin-top: auto;
-            background: #263238; /* لون غامق لأسفل الصفحة */
-            color: white;
-            padding: 2rem;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            padding: 3rem 1rem;
             text-align: center;
-            border-top-left-radius: 30px;
-            border-top-right-radius: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
+        .footer-logo { width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--primary-glow); box-shadow: 0 0 20px var(--primary-glow); margin-bottom: 1rem; }
+        .footer-text { font-weight: 800; font-size: 1.2rem; margin-bottom: 1.5rem; }
+        .social-links a { color: white; font-size: 2rem; margin: 0 15px; transition: 0.3s; }
+        .social-links a:hover { color: var(--accent-glow); transform: scale(1.3) rotate(15deg); text-shadow: 0 0 20px var(--accent-glow); }
 
-        .dev-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 1.5rem;
-        }
 
-        .logo-footer {
-            width: 60px; height: 60px;
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-
-        .social-icons a {
-            color: white;
-            font-size: 1.8rem;
-            margin: 0 15px;
-            transition: 0.3s;
-        }
-        .social-icons a:hover { color: var(--accent); transform: scale(1.2); }
-
-        /* تأخيرات الحركة */
-        .game-card:nth-child(1) { animation-delay: 0.1s; }
-        .game-card:nth-child(2) { animation-delay: 0.2s; }
-        .game-card:nth-child(3) { animation-delay: 0.3s; }
-        .game-card:nth-child(4) { animation-delay: 0.4s; }
-        .game-card:nth-child(5) { animation-delay: 0.5s; }
-        .game-card:nth-child(6) { animation-delay: 0.6s; }
-        .game-card:nth-child(7) { animation-delay: 0.7s; }
-        .game-card:nth-child(8) { animation-delay: 0.8s; }
-        .game-card:nth-child(9) { animation-delay: 0.9s; }
+        /* أنيميشن ظهور الكروت */
+        @keyframes popIn { from { opacity: 0; transform: scale(0.8) translateY(50px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .game-card:nth-child(1) { animation-delay: 0.1s; } .game-card:nth-child(2) { animation-delay: 0.2s; } .game-card:nth-child(3) { animation-delay: 0.3s; }
+        .game-card:nth-child(4) { animation-delay: 0.4s; } .game-card:nth-child(5) { animation-delay: 0.5s; } .game-card:nth-child(6) { animation-delay: 0.6s; }
+        .game-card:nth-child(7) { animation-delay: 0.7s; } .game-card:nth-child(8) { animation-delay: 0.8s; } .game-card:nth-child(9) { animation-delay: 0.9s; }
         .game-card:nth-child(10) { animation-delay: 1.0s; }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
 
         /* للجوال */
         @media (max-width: 600px) {
-            .game-card {
-                flex-direction: row;
-                text-align: right;
-                padding: 1rem;
-                align-items: center;
-                gap: 1rem;
-            }
-            .icon-wrapper {
-                width: 60px; height: 60px;
-                font-size: 1.8rem;
-                margin-bottom: 0;
-                flex-shrink: 0;
-            }
-            .play-btn {
-                width: auto;
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
-            .play-btn span { display: none; } /* إخفاء النص في الجوال */
+            header { padding-top: 4rem; }
+            header h1 { font-size: 2.2rem; }
+            .game-card { padding: 1.5rem; }
+            .icon-box { width: 80px; height: 80px; font-size: 2.8rem; }
+            .card-title { font-size: 1.2rem; }
+            .install-grid { flex-direction: column; }
+            .install-card { width: 100%; flex-direction: row; justify-content: center; gap: 15px; padding: 1.2rem; }
+            .install-card i { margin-bottom: 0; font-size: 2rem; }
         }
-
     </style>
 </head>
 <body>
 
-    <button id="installBtn"><i class="fa-solid fa-cloud-arrow-down"></i> تثبيت التطبيق</button>
+    <button id="installBtn"><i class="fa-solid fa-download"></i> تثبيت المنصة</button>
 
     <header>
         <h1>ألعاب التميز التعليمية</h1>
-        <p>رحلة من المتعة والإبداع في عالم المعرفة</p>
+        <p>استعد لرحلة تعليمية مشوقة في فضاء المعرفة!</p>
     </header>
 
     <div class="container">
-        
         <div class="games-grid">
             
             <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-solid fa-sack-dollar"></i></div>
-                <div style="flex: 1;">
-                    <div class="card-title">المليون (جمع وطرح)</div>
-                    <span class="badge">أول وثاني</span>
-                </div>
+                <div class="icon-box"><i class="fa-solid fa-sack-dollar"></i></div>
+                <div class="card-title">المليون (جمع وطرح)</div>
+                <span class="badge primary">أول وثاني</span>
                 <a href="https://salmanaljnidi.github.io/millionf/" class="play-btn" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-rocket"></i> انطلق للعب
                 </a>
             </div>
 
             <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-solid fa-xmark"></i></div>
-                <div style="flex: 1;">
-                    <div class="card-title">المليون (ضرب)</div>
-                    <span class="badge">صفوف عليا</span>
-                </div>
+                <div class="icon-box"><i class="fa-solid fa-xmark"></i></div>
+                <div class="card-title">المليون (ضرب)</div>
+                <span class="badge upper">صفوف عليا</span>
                 <a href="https://salmanaljnidi.github.io/t2/" class="play-btn" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-rocket"></i> انطلق للعب
                 </a>
             </div>
 
             <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-solid fa-divide"></i></div>
-                <div style="flex: 1;">
-                    <div class="card-title">المليون (قسمة)</div>
-                    <span class="badge">صفوف عليا</span>
-                </div>
+                <div class="icon-box"><i class="fa-solid fa-divide"></i></div>
+                <div class="card-title">المليون (قسمة)</div>
+                <span class="badge upper">صفوف عليا</span>
                 <a href="https://salmanaljnidi.github.io/milliond/" class="play-btn" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-rocket"></i> انطلق للعب
                 </a>
             </div>
 
             <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-solid fa-star"></i></div>
-                <div style="flex: 1;">
-                    <div class="card-title">المليون بلس</div>
-                    <span class="badge">جميع المراحل</span>
-                </div>
+                <div class="icon-box"><i class="fa-solid fa-star"></i></div>
+                <div class="card-title">المليون بلس</div>
+                <span class="badge all">جميع المراحل</span>
                 <a href="https://salmanaljnidi.github.io/supermillion/" class="play-btn" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-rocket"></i> انطلق للعب
                 </a>
             </div>
 
             <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-solid fa-person-hiking"></i></div>
-                <div style="flex: 1;">
-                    <div class="card-title">طريق العصا</div>
-                    <span class="badge">صفوف أولية</span>
-                </div>
+                <div class="icon-box"><i class="fa-solid fa-person-hiking"></i></div>
+                <div class="card-title">طريق العصا</div>
+                <span class="badge primary">صفوف أولية</span>
                 <a href="https://salmanaljnidi.github.io/tgame00/" class="play-btn" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-rocket"></i> انطلق للعب
                 </a>
             </div>
 
             <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-solid fa-crow"></i></div>
-                <div style="flex: 1;">
-                    <div class="card-title">قفزة الطائر</div>
-                    <span class="badge">جميع المراحل</span>
-                </div>
+                <div class="icon-box"><i class="fa-solid fa-crow"></i></div>
+                <div class="card-title">قفزة الطائر</div>
+                <span class="badge all">جميع المراحل</span>
                 <a href="https://salmanaljnidi.github.io/flaymath/" class="play-btn" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-rocket"></i> انطلق للعب
                 </a>
             </div>
 
             <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-solid fa-map-location-dot"></i></div>
-                <div style="flex: 1;">
-                    <div class="card-title">طريق المغامرة 1</div>
-                    <span class="badge">صفوف أولية</span>
-                </div>
+                <div class="icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
+                <div class="card-title">طريق المغامرة 1</div>
+                <span class="badge primary">صفوف أولية</span>
                 <a href="https://salmanaljnidi.github.io/heromath1/" class="play-btn" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-rocket"></i> انطلق للعب
                 </a>
             </div>
 
             <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-solid fa-compass"></i></div>
-                <div style="flex: 1;">
-                    <div class="card-title">طريق المغامرة 2</div>
-                    <span class="badge">صفوف عليا</span>
-                </div>
+                <div class="icon-box"><i class="fa-solid fa-compass"></i></div>
+                <div class="card-title">طريق المغامرة 2</div>
+                <span class="badge upper">صفوف عليا</span>
                 <a href="https://salmanaljnidi.github.io/heromath/" class="play-btn" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-rocket"></i> انطلق للعب
                 </a>
             </div>
 
             <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-solid fa-rocket"></i></div>
-                <div style="flex: 1;">
-                    <div class="card-title">حامي المجرة</div>
-                    <span class="badge">جميع المراحل</span>
-                </div>
+                <div class="icon-box"><i class="fa-solid fa-shuttle-space"></i></div>
+                <div class="card-title">حامي المجرة</div>
+                <span class="badge all">جميع المراحل</span>
                 <a href="https://salmanaljnidi.github.io/galaxywar/" class="play-btn" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-rocket"></i> انطلق للعب
                 </a>
             </div>
 
             <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-brands fa-fort-awesome"></i></div>
-                <div style="flex: 1;">
-                    <div class="card-title">حارس القلعة</div>
-                    <span class="badge">جميع المراحل</span>
-                </div>
+                <div class="icon-box"><i class="fa-brands fa-fort-awesome"></i></div>
+                <div class="card-title">حارس القلعة</div>
+                <span class="badge all">جميع المراحل</span>
                 <a href="https://salmanaljnidi.github.io/castelhero/" class="play-btn" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-rocket"></i> انطلق للعب
                 </a>
             </div>
 
         </div>
 
         <div class="install-section">
-            <div class="section-badge">ميزة جديدة!</div>
-            <h2 style="color: #37474F; margin-bottom: 10px;">العب بدون إنترنت</h2>
-            <p style="color: #78909C;">يمكنك تثبيت المنصة على جهازك بسهولة. شاهد طريقة التثبيت:</p>
+            <div class="install-title"><i class="fa-solid fa-bolt"></i> العب بدون إنترنت!</div>
+            <p style="color: #e0e0e0; font-size: 1.1rem;">ثبت المنصة على جهازك الآن لتستمتع بالألعاب في أي وقت. اختر جهازك:</p>
             
             <div class="install-grid">
-                <a href="https://m.youtube.com/watch?si=JeksAfdlnGuW7AVG&v=bhkmmvd-XIk&feature=youtu.be" target="_blank" class="install-item">
-                    <div class="install-card">
-                        <i class="fa-brands fa-youtube yt-icon"></i>
-                        <span class="install-text">للكمبيوتر</span>
-                    </div>
+                <a href="https://m.youtube.com/watch?si=JeksAfdlnGuW7AVG&v=bhkmmvd-XIk&feature=youtu.be" target="_blank" class="install-card">
+                    <i class="fa-solid fa-desktop"></i>
+                    <span>للكمبيوتر</span>
                 </a>
-                <a href="https://m.youtube.com/shorts/4CMg3Bb29lM?si=6sPoSuaCWWUgt2ma" target="_blank" class="install-item">
-                    <div class="install-card">
-                        <i class="fa-brands fa-youtube yt-icon"></i>
-                        <span class="install-text">للأندرويد</span>
-                    </div>
+                <a href="https://m.youtube.com/shorts/4CMg3Bb29lM?si=6sPoSuaCWWUgt2ma" target="_blank" class="install-card">
+                    <i class="fa-brands fa-android"></i>
+                    <span>للأندرويد</span>
                 </a>
-                <a href="https://m.youtube.com/shorts/699rwcnwU50?si=lRltiQ-QX3aLcHma" target="_blank" class="install-item">
-                    <div class="install-card">
-                        <i class="fa-brands fa-youtube yt-icon"></i>
-                        <span class="install-text">للآيفون</span>
-                    </div>
+                <a href="https://m.youtube.com/shorts/699rwcnwU50?si=lRltiQ-QX3aLcHma" target="_blank" class="install-card">
+                    <i class="fa-brands fa-apple"></i>
+                    <span>للآيفون</span>
                 </a>
             </div>
         </div>
@@ -509,11 +389,9 @@
     </div>
 
     <footer>
-        <div class="dev-container">
-            <img src="logo.png" alt="Salman" class="logo-footer">
-            <div style="font-weight: bold; font-size: 1.1rem;">تطوير وتصميم أ. سلمان الجنيدي</div>
-        </div>
-        <div class="social-icons">
+        <img src="logo.png" alt="Salman Logo" class="footer-logo">
+        <div class="footer-text">تطوير وتصميم أ. سلمان الجنيدي</div>
+        <div class="social-links">
             <a href="https://wa.me/966566996166" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
             <a href="https://snapchat.com/t/frmJidIm" target="_blank"><i class="fa-brands fa-snapchat"></i></a>
         </div>
