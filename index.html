@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ألعاب التميز التعليمية</title>
+    <title>ألعاب سلمان التعليمية</title>
     <meta name="theme-color" content="#2c3e50">
     <meta name="description" content="ألعاب تعليمية تفاعلية للمراحل الدراسية">
     
@@ -39,7 +39,7 @@
             overflow-x: hidden;
         }
 
-        /* === الهيدر بتصميم عصري === */
+        /* === الهيدر === */
         header {
             background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
@@ -67,7 +67,7 @@
             margin-right: auto;
         }
 
-        /* زر التثبيت العائم */
+        /* زر التثبيت */
         #installBtn {
             display: none;
             position: fixed;
@@ -99,14 +99,13 @@
             z-index: 2;
         }
 
-        /* شبكة العرض (Grid) */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
-        /* === تصميم البطاقة المحسن === */
+        /* === البطاقة === */
         .game-card {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -124,7 +123,7 @@
             opacity: 0;
         }
 
-        /* تأثير تأخير ظهور البطاقات */
+        /* تأخير ظهور البطاقات */
         .game-card:nth-child(1) { animation-delay: 0.1s; }
         .game-card:nth-child(2) { animation-delay: 0.2s; }
         .game-card:nth-child(3) { animation-delay: 0.3s; }
@@ -134,12 +133,10 @@
         .game-card:nth-child(7) { animation-delay: 0.7s; }
         .game-card:nth-child(8) { animation-delay: 0.8s; }
         .game-card:nth-child(9) { animation-delay: 0.9s; }
+        .game-card:nth-child(10) { animation-delay: 1.0s; }
 
-        .game-card:hover {
-            transform: translateY(-5px);
-        }
+        .game-card:hover { transform: translateY(-5px); }
 
-        /* الأيقونة */
         .icon-wrapper {
             width: 80px;
             height: 80px;
@@ -160,7 +157,6 @@
             transform: scale(1.1);
         }
 
-        /* النصوص */
         .card-content h2 {
             font-size: 1.3rem;
             margin: 0 0 0.5rem;
@@ -179,7 +175,6 @@
         .badge.upper { background: #f3e5f5; color: #7b1fa2; }
         .badge.all { background: #e8f5e9; color: #2e7d32; }
 
-        /* زر اللعب */
         .play-link {
             width: 100%;
             padding: 12px 0;
@@ -197,7 +192,7 @@
         
         .play-link:active { transform: scale(0.95); }
 
-        /* === الفوتر المحسن === */
+        /* === الفوتر === */
         footer {
             margin-top: auto;
             background: white;
@@ -245,14 +240,13 @@
         .social-bar .wa:hover { color: #25D366; }
         .social-bar .snap:hover { color: #FFFC00; text-shadow: 0 0 5px rgba(0,0,0,0.2); }
 
-        /* === تحسينات خاصة للجوال (Mobile Tweaks) === */
+        /* === تعديلات الجوال === */
         @media (max-width: 600px) {
             .container { padding: 0 1rem; }
             .header { padding-bottom: 4rem; }
             
-            /* جعل البطاقة أفقية في الجوال لتوفير المساحة */
             .game-card {
-                flex-direction: row; /* الأيقونة يمين والنص يسار */
+                flex-direction: row;
                 text-align: right;
                 padding: 1rem;
                 align-items: center;
@@ -267,14 +261,11 @@
                 flex-shrink: 0;
             }
 
-            .card-content {
-                flex: 1;
-            }
+            .card-content { flex: 1; }
 
             .game-card h2 { font-size: 1.1rem; margin-bottom: 4px; }
             .badge { margin-bottom: 0; padding: 3px 8px; font-size: 0.75rem; }
 
-            /* زر اللعب يتحول لأيقونة صغيرة في الجوال */
             .play-link {
                 width: auto;
                 padding: 10px 15px;
@@ -287,7 +278,6 @@
             .play-link i { font-size: 1.2rem; }
         }
 
-        /* حركات الأنيميشن */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -305,13 +295,57 @@
     <button id="installBtn"><i class="fa-solid fa-download"></i> تثبيت التطبيق</button>
 
     <header>
-        <h1>ألعاب التميز التعليمية</h1>
+        <h1>ألعاب سلمان التعليمية</h1>
         <p>تعلم واستمتع في آن واحد</p>
     </header>
 
     <div class="container">
         <div class="games-grid">
             
+            <div class="game-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-sack-dollar"></i></div>
+                <div class="card-content">
+                    <h2>المليون (جمع وطرح)</h2>
+                    <span class="badge primary">أول وثاني</span>
+                </div>
+                <a href="https://salmanaljnidi.github.io/millionf/" class="play-link" target="_blank">
+                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                </a>
+            </div>
+
+            <div class="game-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-xmark"></i></div>
+                <div class="card-content">
+                    <h2>المليون (ضرب)</h2>
+                    <span class="badge upper">صفوف عليا</span>
+                </div>
+                <a href="https://salmanaljnidi.github.io/t2/" class="play-link" target="_blank">
+                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                </a>
+            </div>
+
+            <div class="game-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-divide"></i></div>
+                <div class="card-content">
+                    <h2>المليون (قسمة)</h2>
+                    <span class="badge upper">صفوف عليا</span>
+                </div>
+                <a href="https://salmanaljnidi.github.io/milliond/" class="play-link" target="_blank">
+                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                </a>
+            </div>
+
+            <div class="game-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-star"></i></div>
+                <div class="card-content">
+                    <h2>المليون بلس</h2>
+                    <span class="badge all">جميع المراحل</span>
+                </div>
+                <a href="https://salmanaljnidi.github.io/supermillion/" class="play-link" target="_blank">
+                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
+                </a>
+            </div>
+
             <div class="game-card">
                 <div class="icon-wrapper"><i class="fa-solid fa-person-hiking"></i></div>
                 <div class="card-content">
@@ -357,39 +391,6 @@
             </div>
 
             <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-solid fa-sack-dollar"></i></div>
-                <div class="card-content">
-                    <h2>المليون (جمع و طرح)</h2>
-                    <span class="badge primary">أول وثاني</span>
-                </div>
-                <a href="https://salmanaljnidi.github.io/millionf/" class="play-link" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
-                </a>
-            </div>
-
-            <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-solid fa-xmark"></i></div>
-                <div class="card-content">
-                    <h2>المليون (ضرب)</h2>
-                    <span class="badge upper">صفوف عليا</span>
-                </div>
-                <a href="https://salmanaljnidi.github.io/t2/" class="play-link" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
-                </a>
-            </div>
-
-            <div class="game-card">
-                <div class="icon-wrapper"><i class="fa-solid fa-divide"></i></div>
-                <div class="card-content">
-                    <h2>المليون (قسمة)</h2>
-                    <span class="badge upper">صفوف عليا</span>
-                </div>
-                <a href="https://salmanaljnidi.github.io/milliond/" class="play-link" target="_blank">
-                    <span>العب الآن</span> <i class="fa-solid fa-play"></i>
-                </a>
-            </div>
-
-            <div class="game-card">
                 <div class="icon-wrapper"><i class="fa-solid fa-rocket"></i></div>
                 <div class="card-content">
                     <h2>حامي المجرة</h2>
@@ -417,7 +418,7 @@
     <footer>
         <div class="dev-info">
             <img src="logo.png" alt="Salman Logo" class="logo-img">
-            <div class="copyright">تطوير و تصميم أ. سلمان الجنيدي</div>
+            <div class="copyright">جميع الحقوق محفوظة لـ سلمان الجنيدي</div>
         </div>
         <div class="social-bar">
             <a href="https://wa.me/966566996166" class="wa" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
