@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ألعاب التميز التعليمية</title>
-    <meta name="theme-color" content="#2c3e50">
-    <meta name="description" content="ألعاب تعليمية تفاعلية للمراحل الدراسية">
+    <meta name="theme-color" content="#1a2a6c">
+    <meta name="description" content="منصة ألعاب التميز التعليمية - العب وتعلم بلا حدود">
     
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --bg-body: #f8f9fa;
-            --card-bg: #ffffff;
-            --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.08);
+            --primary-dark: #1a2a6c;
+            --primary-light: #b21f1f;
+            --accent: #fdbb2d;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.4);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
             --radius: 24px;
         }
 
@@ -30,8 +31,11 @@
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--primary);
+            /* خلفية متدرجة متحركة */
+            background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #1a2a6c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--primary-dark);
             margin: 0;
             min-height: 100vh;
             display: flex;
@@ -39,61 +43,76 @@
             overflow-x: hidden;
         }
 
-        /* === الهيدر === */
+        /* حركة الخلفية */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* تأثير الزجاج الشفاف */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        /* === الهيدر المميز === */
         header {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            color: white;
-            padding: 3rem 1.5rem 5rem;
             text-align: center;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
+            padding: 4rem 1.5rem 6rem;
             position: relative;
             z-index: 1;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            margin-bottom: -3rem;
         }
 
         header h1 {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
             margin: 0;
-            font-weight: 800;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-weight: 900;
+            color: var(--primary-dark);
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
         }
 
         header p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-            margin-top: 10px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 15px;
+            color: var(--primary-light);
         }
 
         /* زر التثبيت */
         #installBtn {
             display: none;
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #27ae60;
-            color: white;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.9);
+            color: var(--primary-dark);
             border: none;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 50px;
-            box-shadow: 0 5px 20px rgba(39, 174, 96, 0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             font-family: 'Tajawal';
             font-weight: bold;
-            font-size: 1rem;
             z-index: 1000;
             cursor: pointer;
-            animation: bounceIn 1s;
-            width: max-content;
+            transition: 0.3s;
         }
+        #installBtn:hover { transform: scale(1.05); background: white; }
 
         /* === الحاوية الرئيسية === */
         .container {
             width: 100%;
-            max-width: 1100px;
-            margin: -4rem auto 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
             padding: 0 1.5rem;
             position: relative;
             z-index: 2;
@@ -102,24 +121,20 @@
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
-        /* === البطاقة === */
+        /* === تصميم البطاقة الزجاجية === */
         .game-card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 1.5rem;
+            padding: 2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            box-shadow: var(--shadow-soft);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-            animation: fadeUp 0.6s ease-out forwards;
+            animation: fadeUp 0.8s ease-out forwards;
             opacity: 0;
         }
 
@@ -135,174 +150,222 @@
         .game-card:nth-child(9) { animation-delay: 0.9s; }
         .game-card:nth-child(10) { animation-delay: 1.0s; }
 
-        .game-card:hover { transform: translateY(-5px); }
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(31, 38, 135, 0.3);
+        }
 
         .icon-wrapper {
-            width: 80px;
-            height: 80px;
-            background: #f0f7ff;
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-            transition: 0.3s;
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            color: var(--primary-light);
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.05);
+            transition: 0.5s;
         }
 
         .game-card:hover .icon-wrapper {
-            background: var(--accent);
-            color: white;
-            transform: scale(1.1);
+            transform: rotateY(180deg);
+            color: var(--accent);
+            background: var(--primary-dark);
         }
 
         .card-content h2 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             margin: 0 0 0.5rem;
             font-weight: 800;
         }
 
         .badge {
             display: inline-block;
-            font-size: 0.8rem;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            margin-bottom: 1.2rem;
+            font-size: 0.85rem;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.6);
         }
-        .badge.primary { background: #e3f2fd; color: #1565c0; }
-        .badge.upper { background: #f3e5f5; color: #7b1fa2; }
-        .badge.all { background: #e8f5e9; color: #2e7d32; }
+        .badge.primary { color: #1565c0; }
+        .badge.upper { color: #7b1fa2; }
+        .badge.all { color: #2e7d32; }
 
         .play-link {
             width: 100%;
             padding: 12px 0;
-            background: var(--primary);
+            background: linear-gradient(to right, var(--primary-dark), var(--primary-light));
             color: white;
             text-decoration: none;
-            border-radius: 15px;
+            border-radius: 50px;
             font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: 0.2s;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
-        .play-link:active { transform: scale(0.95); }
+        .play-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
 
-        /* === الفوتر === */
+        /* === قسم التثبيت الجديد === */
+        .install-section {
+            margin-top: 4rem;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .install-section h3 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        .install-section p { font-size: 1.1rem; margin-bottom: 2rem; font-weight: 600; }
+
+        .install-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .install-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: white;
+            text-decoration: none;
+            color: var(--primary-dark);
+            border-radius: 15px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+        }
+
+        .install-btn i { font-size: 1.5rem; }
+        
+        /* ألوان مميزة لكل زر */
+        .btn-pc:hover { border-color: #00a8e8; color: #00a8e8; transform: translateY(-5px); }
+        .btn-android:hover { border-color: #3ddc84; color: #3ddc84; transform: translateY(-5px); }
+        .btn-iphone:hover { border-color: #555; color: #555; transform: translateY(-5px); }
+
+
+        /* === الفوتر الزجاجي === */
         footer {
             margin-top: auto;
-            background: white;
             padding: 2rem 1rem;
             text-align: center;
-            border-top: 1px solid #eee;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
         }
 
         .dev-info {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             margin-bottom: 1.5rem;
         }
 
         .logo-img {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            border: 3px solid #fff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 4px solid rgba(255,255,255,0.8);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             object-fit: cover;
         }
 
         .copyright {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
         }
 
         .social-bar {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 30px;
         }
 
         .social-bar a {
-            font-size: 2rem;
-            color: #bdc3c7;
+            font-size: 2.2rem;
+            color: var(--primary-dark);
             transition: 0.3s;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
-        .social-bar a:hover { transform: scale(1.2); }
+        .social-bar a:hover { transform: scale(1.2) rotate(10deg); }
         .social-bar .wa:hover { color: #25D366; }
-        .social-bar .snap:hover { color: #FFFC00; text-shadow: 0 0 5px rgba(0,0,0,0.2); }
+        .social-bar .snap:hover { color: #FFFC00; }
 
         /* === تعديلات الجوال === */
-        @media (max-width: 600px) {
-            .container { padding: 0 1rem; }
-            .header { padding-bottom: 4rem; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .games-grid { grid-template-columns: 1fr; }
             
             .game-card {
                 flex-direction: row;
                 text-align: right;
-                padding: 1rem;
+                padding: 1.2rem;
                 align-items: center;
-                gap: 1rem;
+                gap: 1.2rem;
             }
 
             .icon-wrapper {
-                width: 60px;
-                height: 60px;
-                font-size: 1.8rem;
-                margin-bottom: 0;
-                flex-shrink: 0;
+                width: 65px; height: 65px; font-size: 2rem;
+                margin-bottom: 0; flex-shrink: 0;
             }
-
+            .game-card:hover .icon-wrapper { transform: rotateY(0); /* إلغاء دوران الأيقونة في الجوال */ }
             .card-content { flex: 1; }
-
-            .game-card h2 { font-size: 1.1rem; margin-bottom: 4px; }
-            .badge { margin-bottom: 0; padding: 3px 8px; font-size: 0.75rem; }
-
+            .game-card h2 { font-size: 1.3rem; margin-bottom: 5px; }
+            .badge { margin-bottom: 0; padding: 4px 10px; font-size: 0.8rem; }
+            
             .play-link {
-                width: auto;
-                padding: 10px 15px;
-                border-radius: 50px;
-                background: #f8f9fa;
-                color: var(--accent);
+                width: auto; padding: 10px 15px;
+                border-radius: 50px; background: var(--accent);
                 box-shadow: none;
             }
             .play-link span { display: none; }
-            .play-link i { font-size: 1.2rem; }
+            .play-link i { font-size: 1.4rem; }
+
+            .install-buttons { flex-direction: column; width: 100%; }
+            .install-btn { width: 100%; justify-content: center; padding: 15px; }
         }
 
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        @keyframes bounceIn {
-            0% { transform: translateX(-50%) scale(0); }
-            60% { transform: translateX(-50%) scale(1.1); }
-            100% { transform: translateX(-50%) scale(1); }
-        }
-
     </style>
 </head>
 <body>
 
     <button id="installBtn"><i class="fa-solid fa-download"></i> تثبيت التطبيق</button>
 
-    <header>
+    <header class="glass">
         <h1>ألعاب التميز التعليمية</h1>
-        <p>تعلم واستمتع في آن واحد</p>
+        <p>رحلة ممتعة في عالم المعرفة والذكاء</p>
     </header>
 
     <div class="container">
         <div class="games-grid">
             
-            <div class="game-card">
+            <div class="game-card glass">
                 <div class="icon-wrapper"><i class="fa-solid fa-sack-dollar"></i></div>
                 <div class="card-content">
                     <h2>المليون (جمع وطرح)</h2>
@@ -313,7 +376,7 @@
                 </a>
             </div>
 
-            <div class="game-card">
+            <div class="game-card glass">
                 <div class="icon-wrapper"><i class="fa-solid fa-xmark"></i></div>
                 <div class="card-content">
                     <h2>المليون (ضرب)</h2>
@@ -324,7 +387,7 @@
                 </a>
             </div>
 
-            <div class="game-card">
+            <div class="game-card glass">
                 <div class="icon-wrapper"><i class="fa-solid fa-divide"></i></div>
                 <div class="card-content">
                     <h2>المليون (قسمة)</h2>
@@ -335,7 +398,7 @@
                 </a>
             </div>
 
-            <div class="game-card">
+            <div class="game-card glass">
                 <div class="icon-wrapper"><i class="fa-solid fa-star"></i></div>
                 <div class="card-content">
                     <h2>المليون بلس</h2>
@@ -346,7 +409,7 @@
                 </a>
             </div>
 
-            <div class="game-card">
+            <div class="game-card glass">
                 <div class="icon-wrapper"><i class="fa-solid fa-person-hiking"></i></div>
                 <div class="card-content">
                     <h2>طريق العصا</h2>
@@ -357,7 +420,7 @@
                 </a>
             </div>
 
-            <div class="game-card">
+            <div class="game-card glass">
                 <div class="icon-wrapper"><i class="fa-solid fa-crow"></i></div>
                 <div class="card-content">
                     <h2>قفزة الطائر</h2>
@@ -368,7 +431,7 @@
                 </a>
             </div>
 
-            <div class="game-card">
+            <div class="game-card glass">
                 <div class="icon-wrapper"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div class="card-content">
                     <h2>طريق المغامرة 1</h2>
@@ -379,7 +442,7 @@
                 </a>
             </div>
 
-            <div class="game-card">
+            <div class="game-card glass">
                 <div class="icon-wrapper"><i class="fa-solid fa-compass"></i></div>
                 <div class="card-content">
                     <h2>طريق المغامرة 2</h2>
@@ -390,7 +453,7 @@
                 </a>
             </div>
 
-            <div class="game-card">
+            <div class="game-card glass">
                 <div class="icon-wrapper"><i class="fa-solid fa-rocket"></i></div>
                 <div class="card-content">
                     <h2>حامي المجرة</h2>
@@ -401,7 +464,7 @@
                 </a>
             </div>
 
-            <div class="game-card">
+            <div class="game-card glass">
                 <div class="icon-wrapper"><i class="fa-brands fa-fort-awesome"></i></div>
                 <div class="card-content">
                     <h2>حارس القلعة</h2>
@@ -413,12 +476,29 @@
             </div>
 
         </div>
+
+        <div class="install-section glass">
+            <h3><i class="fa-solid fa-download"></i> العب بدون إنترنت!</h3>
+            <p>يمكنك تثبيت الألعاب مباشرة من المتصفح بسهولة لتستمتع بها بشكل دائم. شاهد الطريقة:</p>
+            <div class="install-buttons">
+                <a href="https://m.youtube.com/watch?si=JeksAfdlnGuW7AVG&v=bhkmmvd-XIk&feature=youtu.be" target="_blank" class="install-btn btn-pc">
+                    <i class="fa-solid fa-desktop"></i> للكمبيوتر
+                </a>
+                <a href="https://m.youtube.com/shorts/4CMg3Bb29lM?si=6sPoSuaCWWUgt2ma" target="_blank" class="install-btn btn-android">
+                    <i class="fa-brands fa-android"></i> للأندرويد
+                </a>
+                <a href="https://m.youtube.com/shorts/699rwcnwU50?si=lRltiQ-QX3aLcHma" target="_blank" class="install-btn btn-iphone">
+                    <i class="fa-brands fa-apple"></i> للآيفون
+                </a>
+            </div>
+        </div>
+
     </div>
 
-    <footer>
+    <footer class="glass">
         <div class="dev-info">
             <img src="logo.png" alt="Salman Logo" class="logo-img">
-            <div class="copyright">جميع الحقوق محفوظة لـ سلمان الجنيدي</div>
+            <div class="copyright">تصميم وبرمجة: سلمان الجنيدي</div>
         </div>
         <div class="social-bar">
             <a href="https://wa.me/966566996166" class="wa" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
