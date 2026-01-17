@@ -35,7 +35,7 @@
             position: relative;
         }
 
-        /* === الخلفية السائلة المتحركة (Liquid Background) === */
+        /* === الخلفية السائلة المتحركة === */
         .liquid-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
             background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
@@ -55,7 +55,7 @@
         @keyframes flow { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 50px) scale(1.1); } }
 
 
-        /* === زر التثبيت العائم "المطاطي" === */
+        /* === زر التثبيت العائم === */
         #installBtn {
             display: none;
             position: fixed; top: 20px; left: 20px; z-index: 999;
@@ -70,12 +70,13 @@
         /* === الهيدر === */
         header { text-align: center; padding: 5rem 1rem 3rem; position: relative; }
         header h1 {
-            font-size: clamp(2.5rem, 6vw, 3.8rem); margin: 0; font-weight: 900;
+            font-size: clamp(2.2rem, 6vw, 3.8rem); margin: 0; font-weight: 900;
             color: white; text-shadow: 0 4px 15px rgba(0,0,0,0.1);
             letter-spacing: -1px;
         }
         header p {
-            font-size: 1.2rem; color: rgba(255,255,255,0.9); margin-top: 10px; font-weight: 700;
+            font-size: 1.1rem; color: rgba(255,255,255,0.95); margin-top: 15px; font-weight: 700;
+            max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6;
         }
 
 
@@ -88,22 +89,21 @@
         }
 
 
-        /* === بطاقة "Claymorphism" (الصلصال الناعم) === */
+        /* === بطاقة الصلصال الناعم === */
         .clay-card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
-            border-radius: 35px; /* حواف دائرية جداً */
+            border-radius: 35px;
             padding: 2rem 1.5rem;
             text-align: center;
             text-decoration: none;
             color: var(--text-color);
             position: relative;
-            /* سر التصميم: ظلال ناعمة متعددة تعطي عمق */
             box-shadow: 
                 20px 20px 60px rgba(0,0,0,0.05),
                 inset -5px -5px 20px rgba(0,0,0,0.05),
                 inset 5px 5px 20px rgba(255,255,255,1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* حركة نطاطة */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex; flex-direction: column; align-items: center;
             opacity: 0; animation: popUp 0.6s forwards;
             border: 2px solid white;
@@ -111,7 +111,6 @@
 
         .clay-card:hover {
             transform: translateY(-10px) scale(1.03);
-            /* تغيير الظل عند التحويم */
             box-shadow: 
                 25px 25px 70px rgba(0,0,0,0.1),
                 inset -5px -5px 20px rgba(0,0,0,0.02),
@@ -126,17 +125,16 @@
             font-size: 2.8rem; margin-bottom: 1.2rem;
             color: white;
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            /* تدرج لوني خاص لكل أيقونة */
             background: linear-gradient(135deg, var(--c1), var(--c2));
         }
 
-        .card-title { font-size: 1.4rem; font-weight: 800; margin: 0 0 8px; color: #334155; }
+        .card-title { font-size: 1.3rem; font-weight: 800; margin: 0 0 8px; color: #334155; }
         .card-pill {
             display: inline-block; padding: 6px 14px; border-radius: 20px;
             font-size: 0.85rem; font-weight: 700; background: #f1f5f9; color: #64748b;
         }
 
-        /* زر "العب" المخفي الذي يظهر */
+        /* زر التشغيل */
         .play-indicator {
             margin-top: 1.5rem;
             width: 50px; height: 50px; border-radius: 50%;
@@ -149,14 +147,14 @@
             background: var(--primary-accent); transform: rotate(90deg);
         }
 
-        /* === ألوان الأيقونات المتدرجة === */
+        /* ألوان الأيقونات */
         .g-purple { --c1: #a855f7; --c2: #6366f1; }
         .g-orange { --c1: #f97316; --c2: #ef4444; }
         .g-green  { --c1: #22c55e; --c2: #10b981; }
         .g-pink   { --c1: #ec4899; --c2: #d946ef; }
 
 
-        /* === قسم التثبيت (الجزيرة العائمة) === */
+        /* === جزيرة التثبيت === */
         .install-island {
             margin-top: 5rem;
             background: rgba(255, 255, 255, 0.9);
@@ -165,7 +163,6 @@
             position: relative; overflow: hidden;
         }
         
-        /* شريط زخرفي */
         .install-island::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 8px;
             background: linear-gradient(90deg, #6366f1, #ec4899, #f97316);
@@ -180,8 +177,8 @@
             text-decoration: none; color: #475569; font-weight: 800; transition: 0.3s;
         }
         .island-btn i { font-size: 1.5rem; }
-        /* ألوان عند الهوفر */
-        .btn-pc:hover { border-color: #3b82f6; color: #3b82f6; background: #eff6ff; }
+        
+        .btn-pc:hover { border-color: #00a4ef; color: #00a4ef; background: #eff6ff; } /* لون ويندوز */
         .btn-android:hover { border-color: #22c55e; color: #22c55e; background: #f0fdf4; }
         .btn-ios:hover { border-color: #1e293b; color: #1e293b; background: #e2e8f0; }
 
@@ -231,8 +228,8 @@
             <a href="https://salmanaljnidi.github.io/millionf/" class="clay-card g-orange" target="_blank">
                 <div class="icon-bubble"><i class="fa-solid fa-sack-dollar"></i></div>
                 <div>
-                    <div class="card-title">المليون (جمع و طرح)</div>
-                    <span class="card-pill">صفوف أولية</span>
+                    <div class="card-title">اربح المليون (جمع وطرح)</div>
+                    <span class="card-pill">أول وثاني</span>
                 </div>
                 <div class="play-indicator"><i class="fa-solid fa-play"></i></div>
             </a>
@@ -240,7 +237,7 @@
             <a href="https://salmanaljnidi.github.io/t2/" class="clay-card g-orange" target="_blank">
                 <div class="icon-bubble"><i class="fa-solid fa-xmark"></i></div>
                 <div>
-                    <div class="card-title">المليون (ضرب)</div>
+                    <div class="card-title">اربح المليون (ضرب)</div>
                     <span class="card-pill">صفوف عليا</span>
                 </div>
                 <div class="play-indicator"><i class="fa-solid fa-play"></i></div>
@@ -249,7 +246,7 @@
             <a href="https://salmanaljnidi.github.io/milliond/" class="clay-card g-orange" target="_blank">
                 <div class="icon-bubble"><i class="fa-solid fa-divide"></i></div>
                 <div>
-                    <div class="card-title">المليون (قسمة)</div>
+                    <div class="card-title">اربح المليون (قسمة)</div>
                     <span class="card-pill">صفوف عليا</span>
                 </div>
                 <div class="play-indicator"><i class="fa-solid fa-play"></i></div>
@@ -258,7 +255,7 @@
             <a href="https://salmanaljnidi.github.io/supermillion/" class="clay-card g-purple" target="_blank">
                 <div class="icon-bubble"><i class="fa-solid fa-star"></i></div>
                 <div>
-                    <div class="card-title">المليون بلس</div>
+                    <div class="card-title">اربح المليون بلس</div>
                     <span class="card-pill">جميع المراحل</span>
                 </div>
                 <div class="play-indicator"><i class="fa-solid fa-play"></i></div>
@@ -325,7 +322,7 @@
             <p style="margin: 0; color: #94a3b8;">شاهد كيف تثبت الالعاب حسب نوع جهازك في ثواني</p>
             <div class="island-grid">
                 <a href="https://m.youtube.com/watch?si=JeksAfdlnGuW7AVG&v=bhkmmvd-XIk&feature=youtu.be" target="_blank" class="island-btn btn-pc">
-                    <i class="fa-solid fa-desktop"></i> ويندوز
+                    <i class="fa-brands fa-windows"></i> ويندوز
                 </a>
                 <a href="https://m.youtube.com/shorts/4CMg3Bb29lM?si=6sPoSuaCWWUgt2ma" target="_blank" class="island-btn btn-android">
                     <i class="fa-brands fa-android"></i> أندرويد
