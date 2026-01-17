@@ -17,8 +17,8 @@
         :root {
             --bg-color: #f0f4f8;
             --card-color: #ffffff;
-            --primary-accent: #6366f1; /* أزرق نيلي */
-            --secondary-accent: #ec4899; /* وردي */
+            --primary-accent: #6366f1;
+            --secondary-accent: #ec4899;
             --text-color: #1e293b;
         }
 
@@ -67,16 +67,21 @@
         #installBtn:hover { transform: scale(1.05) rotate(-2deg); box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4); }
 
 
-        /* === الهيدر === */
+        /* === الهيدر مع حركة طفيفة === */
         header { text-align: center; padding: 5rem 1rem 3rem; position: relative; }
         header h1 {
             font-size: clamp(2.2rem, 6vw, 3.8rem); margin: 0; font-weight: 900;
             color: white; text-shadow: 0 4px 15px rgba(0,0,0,0.1);
             letter-spacing: -1px;
+            animation: floatText 4s ease-in-out infinite; /* حركة عائمة للنص */
         }
         header p {
             font-size: 1.1rem; color: rgba(255,255,255,0.95); margin-top: 15px; font-weight: 700;
             max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6;
+        }
+        @keyframes floatText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
 
@@ -89,7 +94,7 @@
         }
 
 
-        /* === بطاقة الصلصال الناعم === */
+        /* === بطاقة الصلصال الناعم (مع اللمسة الجديدة) === */
         .clay-card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
@@ -99,6 +104,7 @@
             text-decoration: none;
             color: var(--text-color);
             position: relative;
+            overflow: hidden; /* مهم لتأثير اللمعة */
             box-shadow: 
                 20px 20px 60px rgba(0,0,0,0.05),
                 inset -5px -5px 20px rgba(0,0,0,0.05),
@@ -109,12 +115,30 @@
             border: 2px solid white;
         }
 
+        /* اللمسة الجمالية: تأثير اللمعة المتحركة */
+        .clay-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent);
+            transform: skewX(-25deg);
+            transition: 0.5s;
+            pointer-events: none;
+        }
+
         .clay-card:hover {
             transform: translateY(-10px) scale(1.03);
             box-shadow: 
                 25px 25px 70px rgba(0,0,0,0.1),
                 inset -5px -5px 20px rgba(0,0,0,0.02),
                 inset 5px 5px 20px rgba(255,255,255,0.8);
+        }
+
+        /* تحريك اللمعة عند الهوفر */
+        .clay-card:hover::after {
+            left: 150%;
+            transition: 0.7s ease-in-out;
         }
 
         /* حاوية الأيقونة */
@@ -126,6 +150,11 @@
             color: white;
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
             background: linear-gradient(135deg, var(--c1), var(--c2));
+            transition: 0.4s;
+        }
+        
+        .clay-card:hover .icon-bubble {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .card-title { font-size: 1.3rem; font-weight: 800; margin: 0 0 8px; color: #334155; }
@@ -178,7 +207,7 @@
         }
         .island-btn i { font-size: 1.5rem; }
         
-        .btn-pc:hover { border-color: #00a4ef; color: #00a4ef; background: #eff6ff; } /* لون ويندوز */
+        .btn-pc:hover { border-color: #00a4ef; color: #00a4ef; background: #eff6ff; }
         .btn-android:hover { border-color: #22c55e; color: #22c55e; background: #f0fdf4; }
         .btn-ios:hover { border-color: #1e293b; color: #1e293b; background: #e2e8f0; }
 
@@ -229,7 +258,7 @@
                 <div class="icon-bubble"><i class="fa-solid fa-sack-dollar"></i></div>
                 <div>
                     <div class="card-title">اربح المليون (جمع وطرح)</div>
-                    <span class="card-pill">أول وثاني</span>
+                    <span class="card-pill">صفوف أولية</span>
                 </div>
                 <div class="play-indicator"><i class="fa-solid fa-play"></i></div>
             </a>
