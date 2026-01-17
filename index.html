@@ -4,318 +4,274 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ألعاب التميز التعليمية</title>
-    <meta name="theme-color" content="#0f172a">
+    <meta name="theme-color" content="#000000">
     
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-dark: #0f172a;
-            --text-main: #ffffff;
-            --glass-border: rgba(255, 255, 255, 0.1);
-            
-            /* ألوان التصنيفات */
-            --color-million: #fbbf24; /* ذهبي */
-            --color-adventure: #10b981; /* أخضر */
-            --color-space: #8b5cf6; /* بنفسجي */
-            --color-sky: #3b82f6; /* أزرق */
+            --ps-bg-dark: #05060d;
+            --ps-card-bg: linear-gradient(145deg, #1a1c26, #0f1016);
+            --ps-blue: #0070d1; /* لون البلايستيشن الأزرق المميز */
+            --ps-accent-glow: rgba(0, 112, 209, 0.6);
+            --text-light: #ffffff;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            background-color: var(--ps-bg-dark);
+            color: var(--text-light);
             margin: 0;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
             overflow-x: hidden;
-            position: relative;
+            perspective: 1000px; /* للعمق ثلاثي الأبعاد */
         }
 
-        /* === الخلفية الحية (التي أعجبتك) === */
-        .background-blobs {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            overflow: hidden; background: #0f172a;
+        /* خلفية متحركة بأسلوب "الدخان الرقمي" */
+        body::before {
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1a1442 0%, #05060d 70%);
+            opacity: 0.6; z-index: -2;
         }
-        .blob {
-            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5;
-            animation: float 20s infinite alternate;
+        body::after {
+            content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            animation: noiseMove 20s linear infinite; z-index: -1; pointer-events: none;
         }
-        .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #3b82f6; }
-        .blob-2 { bottom: -10%; right: -10%; width: 600px; height: 600px; background: #8b5cf6; animation-delay: -5s; }
-        
-        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(40px, 40px); } }
+        @keyframes noiseMove { 0% { transform: translate(0,0); } 100% { transform: translate(100px, 100px); } }
+
 
         /* === زر التثبيت === */
         #installBtn {
             display: none;
-            position: fixed; top: 20px; left: 20px; z-index: 1000;
-            background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1); color: white;
-            padding: 10px 20px; border-radius: 30px; font-weight: bold; cursor: pointer;
-            transition: 0.3s;
+            position: fixed; top: 25px; left: 25px; z-index: 1000;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3);
+            color: white; padding: 12px 24px; border-radius: 4px; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s;
         }
-        #installBtn:hover { background: white; color: black; }
+        #installBtn:hover { background: var(--ps-blue); border-color: var(--ps-blue); box-shadow: 0 0 20px var(--ps-accent-glow); }
+
 
         /* === الهيدر === */
-        header { text-align: center; padding: 5rem 1rem 3rem; }
+        header { text-align: left; padding: 6rem 2rem 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
         header h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem); margin: 0; font-weight: 900;
-            background: linear-gradient(to bottom, #fff, #94a3b8);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
+            font-size: clamp(2.5rem, 5vw, 3.5rem); margin: 0; font-weight: 900;
+            text-transform: uppercase; letter-spacing: -1px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
-        header p { font-size: 1.2rem; color: #cbd5e1; margin-top: 10px; font-weight: 300; }
+        header p { font-size: 1.2rem; color: #8f9cae; margin-top: 5px; font-weight: 700; }
 
-        /* === الحاوية === */
-        .container { width: 100%; max-width: 1200px; margin: 0 auto 4rem; padding: 0 1.5rem; }
-        .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
 
-        /* === البطاقة الفخمة (بدون أيقونة دائرية) === */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 2rem;
+        /* === الحاوية والشبكة === */
+        .container { width: 100%; max-width: 1300px; margin: 0 auto 4rem; padding: 0 2rem; }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2.5rem; /* مسافة أكبر للانعكاسات */
+            align-items: start;
+        }
+
+
+        /* === بطاقة اللعبة (أسلوب PS UI) === */
+        .game-tile {
             position: relative;
-            overflow: hidden; /* مهم جداً لقص الأيقونة الخلفية */
-            transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            display: flex; flex-direction: column; justify-content: flex-end;
-            height: 220px; /* ارتفاع ثابت للبطاقة */
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            background: var(--ps-card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
             text-decoration: none;
+            border: 2px solid transparent; /* حدود شفافة في البداية */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* حركة سريعة ودقيقة */
+            z-index: 1;
+            overflow: visible; /* للسماح بظهور الانعكاس */
         }
 
-        /* الأيقونة العملاقة في الخلفية (Watermark) */
-        .bg-icon {
-            position: absolute;
-            right: -20px; bottom: -30px;
-            font-size: 9rem; /* ضخمة جداً */
-            opacity: 0.05; /* شفافة جداً */
-            transform: rotate(-15deg);
-            transition: 0.5s ease;
-            color: white;
-            z-index: 0;
+        /* الأيقونة */
+        .tile-icon {
+            font-size: 3.5rem; color: white; margin-bottom: 1.5rem;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3)); transition: 0.3s;
         }
 
-        /* المحتوى */
-        .card-content { position: relative; z-index: 1; text-align: right; }
+        /* النصوص */
+        .tile-title { font-size: 1.4rem; font-weight: 900; color: white; margin: 0 0 10px; }
+        .tile-badge {
+            font-size: 0.8rem; padding: 4px 12px; background: rgba(255,255,255,0.1);
+            border-radius: 4px; font-weight: 700; color: #aaa; text-transform: uppercase;
+        }
+
+        /* عنصر الانعكاس (The Reflection) - السر هنا */
+        .game-tile::after {
+            content: ''; position: absolute;
+            top: 100%; left: 5%; right: 5%; height: 70px; /* أقصر وأضيق قليلاً */
+            background: inherit; /* يأخذ نفس خلفية البطاقة */
+            transform: perspective(500px) rotateX(50deg) scaleY(-1); /* قلب وإمالة */
+            filter: blur(15px) brightness(0.4); /* تمويه وتقليل الإضاءة */
+            opacity: 0; /* مخفي افتراضياً */
+            transition: 0.4s;
+            z-index: -1; pointer-events: none;
+            border-radius: 12px;
+        }
         
-        .card-title {
-            font-size: 1.8rem; font-weight: 900; margin: 0 0 5px; color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5); line-height: 1.2;
-        }
-        
-        .card-badge {
-            font-size: 0.9rem; color: rgba(255,255,255,0.7); font-weight: 500;
-            display: inline-block; margin-bottom: 15px;
+        /* === تأثيرات التحويم (Hover - The PS Focus) === */
+        .game-tile:hover {
+            transform: translateY(-12px) scale(1.08); /* يرتفع ويكبر */
+            border-color: var(--ps-blue); /* يظهر الإطار الأزرق */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px var(--ps-accent-glow), inset 0 0 20px rgba(0,0,0,0.5); /* ظلال وتوهج داخلي وخارجي */
+            z-index: 10;
+            background: linear-gradient(145deg, #2a2c38, #15161d); /* تفتيح الخلفية قليلاً */
         }
 
-        /* زر التشغيل الصغير */
-        .mini-play {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 8px 20px; border-radius: 50px;
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-            color: white; font-weight: bold; font-size: 0.9rem;
+        .game-tile:hover::after {
+            opacity: 0.6; /* إظهار الانعكاس */
+            top: 102%; /* تعديل مكانه */
+        }
+
+        .game-tile:hover .tile-icon { transform: scale(1.1); color: var(--ps-blue); filter: drop-shadow(0 0 10px var(--ps-blue)); }
+        .game-tile:hover .tile-badge { background: var(--ps-blue); color: white; }
+
+
+        /* === شريط التثبيت (System Bar style) === */
+        .system-bar {
+            margin-top: 5rem;
+            background: rgba(255,255,255,0.05);
+            border-top: 2px solid var(--ps-blue);
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            padding: 2rem; display: flex; align-items: center; justify-content: space-between;
+            backdrop-filter: blur(10px);
+        }
+        .bar-info h2 { margin: 0; font-size: 1.5rem; text-transform: uppercase; }
+        .bar-info p { margin: 5px 0 0; color: #aaa; }
+        .bar-actions { display: flex; gap: 1rem; }
+        .bar-btn {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 20px; background: rgba(255,255,255,0.1);
+            color: white; text-decoration: none; font-weight: bold; border-radius: 4px;
             transition: 0.3s;
         }
+        .bar-btn:hover { background: var(--ps-blue); box-shadow: 0 0 20px var(--ps-accent-glow); }
 
-        /* === التفاعل والألوان حسب النوع === */
-        
-        /* نوع 1: ألعاب المليون (ذهبي) */
-        .type-million:hover { border-color: var(--color-million); box-shadow: 0 0 30px rgba(251, 191, 36, 0.2); }
-        .type-million .bg-icon { color: var(--color-million); }
-        .type-million:hover .bg-icon { opacity: 0.2; transform: rotate(0deg) scale(1.1); right: -10px; }
-        .type-million:hover .mini-play { background: var(--color-million); color: black; border-color: var(--color-million); }
-
-        /* نوع 2: مغامرات (أخضر) */
-        .type-adv:hover { border-color: var(--color-adventure); box-shadow: 0 0 30px rgba(16, 185, 129, 0.2); }
-        .type-adv .bg-icon { color: var(--color-adventure); }
-        .type-adv:hover .bg-icon { opacity: 0.2; transform: rotate(0deg) scale(1.1); right: -10px; }
-        .type-adv:hover .mini-play { background: var(--color-adventure); color: black; border-color: var(--color-adventure); }
-
-        /* نوع 3: فضاء (بنفسجي) */
-        .type-space:hover { border-color: var(--color-space); box-shadow: 0 0 30px rgba(139, 92, 246, 0.2); }
-        .type-space .bg-icon { color: var(--color-space); }
-        .type-space:hover .bg-icon { opacity: 0.2; transform: rotate(0deg) scale(1.1); right: -10px; }
-        .type-space:hover .mini-play { background: var(--color-space); color: white; border-color: var(--color-space); }
-
-        /* نوع 4: طيران (أزرق) */
-        .type-sky:hover { border-color: var(--color-sky); box-shadow: 0 0 30px rgba(59, 130, 246, 0.2); }
-        .type-sky .bg-icon { color: var(--color-sky); }
-        .type-sky:hover .bg-icon { opacity: 0.2; transform: rotate(0deg) scale(1.1); right: -10px; }
-        .type-sky:hover .mini-play { background: var(--color-sky); color: white; border-color: var(--color-sky); }
-
-        /* حركة الرفع للبطاقة */
-        .glass-card:hover { transform: translateY(-10px); }
-
-
-        /* === قسم التثبيت === */
-        .install-dock {
-            margin-top: 5rem;
-            background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 30px; padding: 2rem; text-align: center;
-        }
-        .dock-grid { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
-        .dock-btn {
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            padding: 12px 25px; border-radius: 12px; color: white; text-decoration: none;
-            display: flex; align-items: center; gap: 10px; transition: 0.3s; font-weight: bold;
-        }
-        .dock-btn:hover { background: white; color: black; transform: translateY(-3px); }
 
         /* === الفوتر === */
-        footer { margin-top: auto; padding: 3rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-        .footer-logo { width: 70px; height: 70px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); margin-bottom: 1rem; }
-        .socials a { color: rgba(255,255,255,0.6); font-size: 1.8rem; margin: 0 15px; transition: 0.3s; }
+        footer { margin-top: auto; padding: 3rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); background: #05060d; }
+        .footer-logo { width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); margin-bottom: 1rem; }
+        .footer-credit { color: #8f9cae; font-weight: bold; margin-bottom: 1rem; }
+        .socials a { color: rgba(255,255,255,0.5); font-size: 1.8rem; margin: 0 15px; transition: 0.3s; }
         .socials a:hover { color: white; transform: scale(1.2); }
 
+
         /* للجوال */
-        @media (max-width: 600px) {
-            .glass-card { height: 140px; justify-content: center; } /* ارتفاع أقل للجوال */
-            .bg-icon { font-size: 6rem; bottom: -10px; }
-            .card-title { font-size: 1.4rem; }
-            .dock-btn { width: 100%; justify-content: center; }
+        @media (max-width: 768px) {
+            header { text-align: center; padding-top: 5rem; }
+            .games-grid { grid-template-columns: repeat(auto-fill, minmax(45%, 1fr)); gap: 1.5rem; } /* بطاقات أصغر للجوال */
+            .game-tile { padding: 1.5rem; }
+            .tile-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+            .tile-title { font-size: 1.1rem; }
+            .system-bar { flex-direction: column; text-align: center; gap: 1.5rem; }
+            .bar-actions { width: 100%; justify-content: center; }
         }
+        @media (max-width: 480px) {
+             .games-grid { grid-template-columns: 1fr; } /* عمود واحد للشاشات الصغيرة جداً */
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="background-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
-
-    <button id="installBtn"><i class="fa-solid fa-download"></i> تثبيت التطبيق</button>
+    <button id="installBtn"><i class="fa-solid fa-download"></i> تثبيت المنصة</button>
 
     <header>
         <h1>ألعاب التميز التعليمية</h1>
-        <p>تجربة تعليمية من المستقبل</p>
+        <p>اختر لعبتك وابدأ التحدي</p>
     </header>
 
     <div class="container">
         <div class="games-grid">
             
-            <a href="https://salmanaljnidi.github.io/millionf/" class="glass-card type-million" target="_blank">
-                <i class="fa-solid fa-sack-dollar bg-icon"></i> <div class="card-content">
-                    <div class="card-badge">صفوف أولية</div>
-                    <div class="card-title">المليون (جمع و طرح)</div>
-                    <div class="mini-play">العب الآن <i class="fa-solid fa-arrow-left"></i></div>
-                </div>
+            <a href="https://salmanaljnidi.github.io/millionf/" class="game-tile" target="_blank">
+                <i class="fa-solid fa-sack-dollar tile-icon"></i>
+                <div class="tile-title">المليون (جمع)</div>
+                <span class="tile-badge">أول وثاني</span>
             </a>
 
-            <a href="https://salmanaljnidi.github.io/t2/" class="glass-card type-million" target="_blank">
-                <i class="fa-solid fa-xmark bg-icon"></i>
-                <div class="card-content">
-                    <div class="card-badge">صفوف عليا</div>
-                    <div class="card-title">المليون (ضرب)</div>
-                    <div class="mini-play">العب الآن <i class="fa-solid fa-arrow-left"></i></div>
-                </div>
+            <a href="https://salmanaljnidi.github.io/t2/" class="game-tile" target="_blank">
+                <i class="fa-solid fa-xmark tile-icon"></i>
+                <div class="tile-title">المليون (ضرب)</div>
+                <span class="tile-badge">صفوف عليا</span>
             </a>
 
-            <a href="https://salmanaljnidi.github.io/milliond/" class="glass-card type-million" target="_blank">
-                <i class="fa-solid fa-divide bg-icon"></i>
-                <div class="card-content">
-                    <div class="card-badge">صفوف عليا</div>
-                    <div class="card-title">المليون (قسمة)</div>
-                    <div class="mini-play">العب الآن <i class="fa-solid fa-arrow-left"></i></div>
-                </div>
+            <a href="https://salmanaljnidi.github.io/milliond/" class="game-tile" target="_blank">
+                <i class="fa-solid fa-divide tile-icon"></i>
+                <div class="tile-title">المليون (قسمة)</div>
+                <span class="tile-badge">صفوف عليا</span>
             </a>
 
-            <a href="https://salmanaljnidi.github.io/supermillion/" class="glass-card type-million" target="_blank">
-                <i class="fa-solid fa-star bg-icon"></i>
-                <div class="card-content">
-                    <div class="card-badge">جميع المراحل</div>
-                    <div class="card-title">المليون بلس</div>
-                    <div class="mini-play">العب الآن <i class="fa-solid fa-arrow-left"></i></div>
-                </div>
+            <a href="https://salmanaljnidi.github.io/supermillion/" class="game-tile" target="_blank">
+                <i class="fa-solid fa-star tile-icon"></i>
+                <div class="tile-title">المليون بلس</div>
+                <span class="tile-badge">جميع المراحل</span>
             </a>
 
-            <a href="https://salmanaljnidi.github.io/tgame00/" class="glass-card type-adv" target="_blank">
-                <i class="fa-solid fa-person-hiking bg-icon"></i>
-                <div class="card-content">
-                    <div class="card-badge">صفوف أولية</div>
-                    <div class="card-title">طريق العصا</div>
-                    <div class="mini-play">العب الآن <i class="fa-solid fa-arrow-left"></i></div>
-                </div>
+            <a href="https://salmanaljnidi.github.io/tgame00/" class="game-tile" target="_blank">
+                <i class="fa-solid fa-person-hiking tile-icon"></i>
+                <div class="tile-title">طريق العصا</div>
+                <span class="tile-badge">صفوف أولية</span>
             </a>
 
-            <a href="https://salmanaljnidi.github.io/flaymath/" class="glass-card type-sky" target="_blank">
-                <i class="fa-solid fa-crow bg-icon"></i>
-                <div class="card-content">
-                    <div class="card-badge">جميع المراحل</div>
-                    <div class="card-title">قفزة الطائر</div>
-                    <div class="mini-play">العب الآن <i class="fa-solid fa-arrow-left"></i></div>
-                </div>
+            <a href="https://salmanaljnidi.github.io/flaymath/" class="game-tile" target="_blank">
+                <i class="fa-solid fa-crow tile-icon"></i>
+                <div class="tile-title">قفزة الطائر</div>
+                <span class="tile-badge">جميع المراحل</span>
             </a>
 
-            <a href="https://salmanaljnidi.github.io/heromath1/" class="glass-card type-adv" target="_blank">
-                <i class="fa-solid fa-map-location-dot bg-icon"></i>
-                <div class="card-content">
-                    <div class="card-badge">صفوف أولية</div>
-                    <div class="card-title">طريق المغامرة 1</div>
-                    <div class="mini-play">العب الآن <i class="fa-solid fa-arrow-left"></i></div>
-                </div>
+            <a href="https://salmanaljnidi.github.io/heromath1/" class="game-tile" target="_blank">
+                <i class="fa-solid fa-map-location-dot tile-icon"></i>
+                <div class="tile-title">طريق المغامرة 1</div>
+                <span class="tile-badge">صفوف أولية</span>
             </a>
 
-            <a href="https://salmanaljnidi.github.io/heromath/" class="glass-card type-adv" target="_blank">
-                <i class="fa-solid fa-compass bg-icon"></i>
-                <div class="card-content">
-                    <div class="card-badge">صفوف عليا</div>
-                    <div class="card-title">طريق المغامرة 2</div>
-                    <div class="mini-play">العب الآن <i class="fa-solid fa-arrow-left"></i></div>
-                </div>
+            <a href="https://salmanaljnidi.github.io/heromath/" class="game-tile" target="_blank">
+                <i class="fa-solid fa-compass tile-icon"></i>
+                <div class="tile-title">طريق المغامرة 2</div>
+                <span class="tile-badge">صفوف عليا</span>
             </a>
 
-            <a href="https://salmanaljnidi.github.io/galaxywar/" class="glass-card type-space" target="_blank">
-                <i class="fa-solid fa-rocket bg-icon"></i>
-                <div class="card-content">
-                    <div class="card-badge">جميع المراحل</div>
-                    <div class="card-title">حامي المجرة</div>
-                    <div class="mini-play">العب الآن <i class="fa-solid fa-arrow-left"></i></div>
-                </div>
+            <a href="https://salmanaljnidi.github.io/galaxywar/" class="game-tile" target="_blank">
+                <i class="fa-solid fa-rocket tile-icon"></i>
+                <div class="tile-title">حامي المجرة</div>
+                <span class="tile-badge">جميع المراحل</span>
             </a>
 
-            <a href="https://salmanaljnidi.github.io/castelhero/" class="glass-card type-space" target="_blank">
-                <i class="fa-brands fa-fort-awesome bg-icon"></i>
-                <div class="card-content">
-                    <div class="card-badge">جميع المراحل</div>
-                    <div class="card-title">حارس القلعة</div>
-                    <div class="mini-play">العب الآن <i class="fa-solid fa-arrow-left"></i></div>
-                </div>
+            <a href="https://salmanaljnidi.github.io/castelhero/" class="game-tile" target="_blank">
+                <i class="fa-brands fa-fort-awesome tile-icon"></i>
+                <div class="tile-title">حارس القلعة</div>
+                <span class="tile-badge">جميع المراحل</span>
             </a>
 
         </div>
+    </div>
 
-        <div class="install-dock">
-            <h2 style="margin:0 0 10px 0; color:white;">العب بدون إنترنت</h2>
-            <p style="margin:0; color:#94a3b8;">شاهد شرح طريقة تثبيت المنصة على جهازك</p>
-            <div class="dock-grid">
-                <a href="https://m.youtube.com/watch?si=JeksAfdlnGuW7AVG&v=bhkmmvd-XIk&feature=youtu.be" target="_blank" class="dock-btn">
-                    <i class="fa-brands fa-youtube"></i> شرح الكمبيوتر
-                </a>
-                <a href="https://m.youtube.com/shorts/4CMg3Bb29lM?si=6sPoSuaCWWUgt2ma" target="_blank" class="dock-btn">
-                    <i class="fa-brands fa-youtube"></i> شرح أندرويد
-                </a>
-                <a href="https://m.youtube.com/shorts/699rwcnwU50?si=lRltiQ-QX3aLcHma" target="_blank" class="dock-btn">
-                    <i class="fa-brands fa-youtube"></i> شرح آيفون
-                </a>
-            </div>
+    <div class="system-bar">
+        <div class="bar-info">
+            <h2>العب بدون اتصال</h2>
+            <p>قم بتثبيت المكتبة الكاملة على جهازك.</p>
         </div>
-
+        <div class="bar-actions">
+            <a href="https://m.youtube.com/watch?si=JeksAfdlnGuW7AVG&v=bhkmmvd-XIk&feature=youtu.be" target="_blank" class="bar-btn"><i class="fa-solid fa-desktop"></i> كمبيوتر</a>
+            <a href="https://m.youtube.com/shorts/4CMg3Bb29lM?si=6sPoSuaCWWUgt2ma" target="_blank" class="bar-btn"><i class="fa-brands fa-android"></i> أندرويد</a>
+            <a href="https://m.youtube.com/shorts/699rwcnwU50?si=lRltiQ-QX3aLcHma" target="_blank" class="bar-btn"><i class="fa-brands fa-apple"></i> آيفون</a>
+        </div>
     </div>
 
     <footer>
         <img src="logo.png" alt="Salman" class="footer-logo">
-        <div style="font-weight: bold; margin-bottom: 1rem; color: #94a3b8;">تطوير وتصميم أ. سلمان الجنيدي</div>
+        <div class="footer-credit">تصميم وبرمجة: سلمان الجنيدي</div>
         <div class="socials">
             <a href="https://wa.me/966566996166" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
             <a href="https://snapchat.com/t/frmJidIm" target="_blank"><i class="fa-brands fa-snapchat"></i></a>
