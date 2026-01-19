@@ -8,7 +8,8 @@
     <meta name="description" content="منصة ألعاب التميز - حيث المتعة تصنع التعلم">
     
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="apple-touch-icon" href="game-logo.png">
+    <link rel="icon" type="image/png" href="game-logo.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,18 +17,18 @@
     <style>
         :root {
             --bg-color: #f0f4f8;
-            --text-color: #1e293b; /* لون نص غامق وواضح */
+            --text-color: #1e293b;
             
             /* ألوان المراحل */
-            --pill-primary-bg: #e0f2fe; --pill-primary-text: #0284c7; /* أزرق للأولية */
-            --pill-upper-bg: #ffedd5; --pill-upper-text: #c2410c; /* برتقالي للعليا */
-            --pill-all-bg: #f3e8ff; --pill-all-text: #7e22ce; /* بنفسجي للكل */
+            --pill-primary-bg: #e0f2fe; --pill-primary-text: #0284c7;
+            --pill-upper-bg: #ffedd5; --pill-upper-text: #c2410c;
+            --pill-all-bg: #f3e8ff; --pill-all-text: #7e22ce;
             
             /* ألوان العناوين الفرعية */
-            --txt-add: #059669; /* أخضر للجمع */
-            --txt-mult: #dc2626; /* أحمر للضرب */
-            --txt-div: #2563eb; /* أزرق للقسمة */
-            --txt-plus: #db2777; /* وردي للبلس */
+            --txt-add: #059669;
+            --txt-mult: #dc2626;
+            --txt-div: #2563eb;
+            --txt-plus: #db2777;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -75,37 +76,51 @@
         #installBtn:hover { transform: scale(1.05) rotate(-2deg); box-shadow: 0 15px 35px rgba(79, 70, 229, 0.4); }
 
 
-        /* === الهيدر المحسن (واضح جداً) === */
+        /* === الهيدر (رأس الصفحة) === */
         header { 
             text-align: center; 
-            padding: 5rem 1rem 3rem; 
+            padding: 3rem 1rem 2rem; 
             position: relative;
         }
         
-        .header-content {
-            background: rgba(255, 255, 255, 0.3); /* خلفية زجاجية خفيفة خلف النص */
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 30px;
+        /* تنسيق الشعار الرسمي */
+        .main-logo {
+            width: 180px; /* حجم الشعار */
+            height: 180px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15)); /* ظل ناعم للشعار */
+            animation: floatLogo 4s ease-in-out infinite; /* حركة طفو خفيفة */
+            margin-bottom: 1rem;
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header-text {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(5px);
+            padding: 1rem 2rem;
+            border-radius: 20px;
             display: inline-block;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
 
         header h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem); 
+            font-size: clamp(1.8rem, 5vw, 2.5rem); 
             margin: 0; 
             font-weight: 900;
-            color: #1e1b4b; /* كحلي غامق للتباين */
+            color: #1e1b4b;
             letter-spacing: -1px;
         }
         
         header p {
             font-size: 1.1rem; 
-            color: #334155; /* رمادي غامق */
-            margin-top: 15px; 
+            color: #334155; 
+            margin-top: 10px; 
             font-weight: 700;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
 
@@ -139,7 +154,6 @@
             border: 2px solid white;
         }
 
-        /* اللمعة الزجاجية */
         .clay-card::after {
             content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
             background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent);
@@ -155,7 +169,6 @@
         }
         .clay-card:hover::after { left: 150%; transition: 0.7s ease-in-out; }
 
-        /* الأيقونات */
         .icon-bubble {
             width: 90px; height: 90px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
@@ -166,30 +179,23 @@
         }
         .clay-card:hover .icon-bubble { transform: scale(1.1) rotate(5deg); }
 
-        /* تنسيق العنوان والألوان الخاصة */
         .card-title { font-size: 1.3rem; font-weight: 800; margin: 0 0 12px; color: #334155; line-height: 1.4; }
         
-        /* ألوان الكلمات المميزة */
         .txt-add { color: var(--txt-add); }
         .txt-mult { color: var(--txt-mult); }
         .txt-div { color: var(--txt-div); }
         .txt-plus { color: var(--txt-plus); }
 
-        /* تنسيق المراحل (Badge) */
         .card-pill {
             display: inline-block; padding: 6px 16px; border-radius: 20px;
             font-size: 0.85rem; font-weight: 800;
         }
-        /* كلاسات الألوان للمراحل */
         .pill-primary { background: var(--pill-primary-bg); color: var(--pill-primary-text); }
         .pill-upper { background: var(--pill-upper-bg); color: var(--pill-upper-text); }
         .pill-all { background: var(--pill-all-bg); color: var(--pill-all-text); }
 
-
-        /* زر التشغيل */
         .play-indicator {
-            margin-top: auto; /* يدفعه للأسفل */
-            padding-top: 1.5rem;
+            margin-top: auto; padding-top: 1.5rem;
             width: 50px; height: 50px; border-radius: 50%;
             background: #1e293b; color: white;
             display: flex; align-items: center; justify-content: center;
@@ -198,7 +204,6 @@
         }
         .clay-card:hover .play-indicator { background: #6366f1; transform: rotate(90deg); }
 
-        /* ألوان الأيقونات */
         .g-purple { --c1: #a855f7; --c2: #6366f1; }
         .g-orange { --c1: #f97316; --c2: #ef4444; }
         .g-green  { --c1: #22c55e; --c2: #10b981; }
@@ -234,8 +239,27 @@
 
 
         /* === الفوتر === */
-        footer { margin-top: auto; padding: 3rem; text-align: center; background: white; border-top-left-radius: 40px; border-top-right-radius: 40px; }
-        .footer-logo { width: 75px; height: 75px; border-radius: 50%; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-bottom: 1rem; border: 4px solid white; transform: translateY(-40px); background: white; }
+        footer { 
+            margin-top: auto; 
+            padding: 3rem; 
+            text-align: center; 
+            background: white; 
+            border-top-left-radius: 40px; 
+            border-top-right-radius: 40px; 
+        }
+        
+        .footer-logo { 
+            width: 100px; 
+            height: 100px; 
+            border-radius: 50%; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            margin-bottom: 1rem; 
+            border: 4px solid white; 
+            transform: translateY(-40px); 
+            background: white; 
+            object-fit: cover;
+        }
+        
         .socials a {
             display: inline-flex; width: 50px; height: 50px; border-radius: 50%; background: #f1f5f9;
             align-items: center; justify-content: center; margin: 0 8px; color: #64748b; font-size: 1.5rem; text-decoration: none; transition: 0.3s;
@@ -258,6 +282,8 @@
             .play-indicator { width: 40px; height: 40px; font-size: 1rem; margin-top: 0; margin-right: auto; padding-top: 0; }
             .island-grid { flex-direction: column; }
             .island-btn { justify-content: center; }
+            /* تصغير الشعار قليلاً في الجوال */
+            .main-logo { width: 140px; height: 140px; }
         }
     </style>
 </head>
@@ -268,7 +294,11 @@
     <button id="installBtn"><i class="fa-solid fa-cloud-arrow-down"></i> تثبيت التطبيق</button>
 
     <header>
-        <div class="header-content">
+        <img src="game-logo.png" alt="شعار ألعاب التميز" class="main-logo">
+        
+        <br>
+        
+        <div class="header-text">
             <h1>ألعاب التميز التعليمية</h1>
             <p>هنا تلتقي متعة اللعب بذكاء الأرقام .. اختر لعبة و ابدأ التحدي ..</p>
         </div>
@@ -387,7 +417,7 @@
     </div>
 
     <footer>
-        <img src="logo.png" alt="Salman" class="footer-logo">
+        <img src="signature.png" alt="Salman Signature" class="footer-logo">
         <div style="font-weight: bold; margin-bottom: 1.5rem; color: #64748b;">تطوير وتصميم أ. سلمان الجنيدي</div>
         <div class="socials">
             <a href="https://wa.me/966566996166" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
