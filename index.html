@@ -83,14 +83,16 @@
             position: relative;
         }
         
-        /* تنسيق الشعار الرسمي */
+        /* تنسيق الشعار الرسمي (تم التعديل هنا لقص الحواف) */
         .main-logo {
             width: 180px;
             height: 180px;
-            object-fit: contain;
+            object-fit: cover; /* يملأ الدائرة بشكل كامل */
+            border-radius: 50%; /* هذا هو السر لجعلها دائرية */
             filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
             animation: floatLogo 4s ease-in-out infinite;
             margin-bottom: 1rem;
+            background-color: white; /* خلفية بيضاء لضمان عدم وجود فراغات */
         }
 
         @keyframes floatLogo {
